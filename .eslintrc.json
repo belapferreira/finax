@@ -1,7 +1,9 @@
 {
-  "extends": ["next/core-web-vitals", "next"],
+  "extends": ["next/core-web-vitals", "next", "prettier"],
+  "plugins": ["prettier"],
   "rules": {
     "semi": [2, "always"],
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": ["error", "always-multiline"],
+    "prettier/prettier": ["error", { "singleQuote": true}]
   }
 }
