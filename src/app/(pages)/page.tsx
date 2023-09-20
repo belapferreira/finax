@@ -13,7 +13,7 @@ const Home = () => {
     <main className="flex h-full w-full flex-col px-5 py-8">
       <div className="flex w-full max-w-app flex-col gap-8 self-center">
         <section className="flex flex-col gap-5">
-          <h2 className="text-xl font-semibold text-gray-200">Summary</h2>
+          <h2 className="text-xl font-semibold text-gray-300/90">Summary</h2>
 
           <div className="h-72">
             <BarChart
@@ -60,7 +60,7 @@ const Home = () => {
         </section>
 
         <section className="flex flex-col gap-5">
-          <h2 className="text-xl font-semibold text-gray-200">
+          <h2 className="text-xl font-semibold text-gray-300/90">
             Latest registers
           </h2>
           <div className="flex flex-col gap-6">
