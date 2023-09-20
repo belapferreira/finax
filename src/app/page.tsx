@@ -29,7 +29,7 @@ export default function Home() {
                   hoverBorderColor: '#0891b2',
                   borderRadius: 4,
                   borderWidth: 1,
-                  label: ` Income`,
+                  label: ` Income ($)`,
                 },
                 {
                   data: datasetTwo,
@@ -40,7 +40,7 @@ export default function Home() {
                   hoverBorderColor: '#e11d48',
                   borderRadius: 4,
                   borderWidth: 1,
-                  label: ` Outcome`,
+                  label: ` Outcome ($)`,
                 },
                 {
                   data: datasetThree,
@@ -51,7 +51,7 @@ export default function Home() {
                   hoverBorderColor: '#9ca3af',
                   borderRadius: 4,
                   borderWidth: 1,
-                  label: ` Balance`,
+                  label: ` Balance ($)`,
                 },
               ],
             }}
