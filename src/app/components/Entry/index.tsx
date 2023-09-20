@@ -2,11 +2,11 @@ import { tv, VariantProps } from 'tailwind-variants';
 import { CiExport, CiImport } from 'react-icons/ci';
 
 const entry = tv({
-  base: 'flex gap-8 w-[90%] justify-between px-8 py-4 border border-solid rounded-md',
+  base: 'flex gap-8 w-full justify-between self-center px-8 py-4 border border-solid rounded-md',
   variants: {
     variant: {
-      income: 'self-start border-cyan-800/30',
-      outcome: 'self-end border-rose-800/30',
+      income: 'border-cyan-800/30',
+      outcome: 'border-rose-800/30',
     },
   },
 });
