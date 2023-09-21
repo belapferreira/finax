@@ -11,7 +11,7 @@ const datasetThree = [500, 1100, 100];
 const Home = () => {
   return (
     <main className="flex h-full w-full flex-col px-5 py-8">
-      <div className="flex w-full max-w-app flex-col gap-8 self-center">
+      <div className="flex w-full max-w-app flex-col gap-10 self-center">
         <section className="flex flex-col gap-5">
           <h2 className="text-xl font-semibold text-gray-300/90">Summary</h2>
 
