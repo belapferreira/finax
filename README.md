@@ -7,7 +7,7 @@
 </p> -->
 
 <strong align="center">
-  With a combination of the word "finance", that refers to the management of money, and the word "maximize", that means to make most of something, the Finax is a personal finance control app that aim to help people maximize their finances and make the most of their money.
+  With a combination of the word "finance", which refers to the management of money, and the word "maximize", which means to make the most of something, the Finax is a personal finance control app that aims to help people maximize their finances and make the most of their money.
 </strong>
 
 <p align="center">
@@ -42,7 +42,7 @@
 
 The Finax app was developed as a way to apply and fix the knowledge that was studied about TailwindCSS and Redux Toolkit practically.
 
-I'm more familiar with React, so I picked this library to develop the interface, using the Next.js framework. Currently the React team recommend picking one of the frameworks popular in the community:
+I'm more familiar with React, so I picked this library to develop the interface, using the Next.js framework. Currently, the React team recommends choosing one of the frameworks popular in the community:
 
 > If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
 
@@ -60,7 +60,7 @@ And I used TypeScript because you can save time by avoiding bugs due to typos an
 
 ### :heavy_check_mark: Settings
 
-The settings to execute the application in your computer are listed below.
+The settings to execute the application on your computer are listed below.
 
 - [Git](https://git-scm.com);
 - [Node](https://nodejs.org/);
@@ -91,13 +91,7 @@ yarn run dev
 
 This project was developed using the following resources:
 
-- [Eslint](https://eslint.org/);
-- [Next.js](https://nextjs.org/);
-- [Radix UI Tabs](https://www.radix-ui.com/primitives/docs/components/tabs);
-- [React Icons](https://react-icons.github.io/react-icons/);
-- [Redux Toolkit](https://redux-toolkit.js.org/);
-- [Tailwindcss](https://tailwindcss.com/);
-- [TypeScript](https://www.typescriptlang.org/).
+[Eslint](https://eslint.org/) | [Next.js](https://nextjs.org/) | [Radix UI Tabs](https://www.radix-ui.com/primitives/docs/components/tabs) | [React Icons](https://react-icons.github.io/react-icons/) | [Redux Toolkit](https://redux-toolkit.js.org/) | [Tailwindcss](https://tailwindcss.com/) | [TypeScript](https://www.typescriptlang.org/)
 
 
 ### :memo: License
