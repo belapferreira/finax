@@ -50,7 +50,9 @@ And I used TypeScript because you can save time by avoiding bugs due to typos an
 
 ### Features
 
-🚧 In construction 🚧
+<p align="center">
+  🚧 In construction 🚧
+</p>
 
 <!-- - Add task;
 - Remove task;
