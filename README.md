@@ -84,7 +84,7 @@ git clone https://github.com/belapferreira/finax
 yarn install
 
 # starting application
-yarn run dev
+yarn dev
 ```
 
 ### :wrench: Techs | Tools | Resources
