@@ -10,7 +10,8 @@
   With a combination of the word "finance", which refers to the management of money, and the word "maximize", which means to make the most of something, the Finax is a personal finance control app that aims to help people maximize their finances and make the most of their money.
 </strong>
 
-<br />
+\
+&nbsp;
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/belapferreira/finax">

@@ -2,7 +2,7 @@ import { tv, VariantProps } from 'tailwind-variants';
 import { CiExport, CiImport } from 'react-icons/ci';
 
 const entry = tv({
-  base: 'flex gap-10 w-[90%] justify-between self-center px-8 py-3 border border-solid rounded-md',
+  base: 'flex gap-10 w-[90%] justify-between self-center px-6 py-3 border border-solid rounded-md',
   variants: {
     variant: {
       income: 'self-start border-cyan-800/30',
@@ -38,9 +38,9 @@ export const Entry = ({ date, value, description, variant }: EntryProps) => {
       </div>
 
       {isIncome ? (
-        <CiImport size={24} color="#06b6d4" />
+        <CiImport size={20} color="#06b6d4" />
       ) : (
-        <CiExport size={24} color="#f43f5e" />
+        <CiExport size={20} color="#f43f5e" />
       )}
     </div>
   );
