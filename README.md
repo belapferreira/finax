@@ -45,11 +45,13 @@
 
 The Finax app was developed as a way to apply and fix the knowledge that was studied about TailwindCSS and Redux Toolkit practically.
 
-I'm more familiar with React, so I picked this library to develop the interface, using the Next.js framework. Currently, the React team recommends choosing one of the frameworks popular in the community:
+I'm more familiar with React, so I've picked this library to develop the interface, using the Next.js framework. Currently, the React team recommends choosing one of the frameworks popular in the community:
 
 > If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
 
-And I used TypeScript because you can save time by avoiding bugs due to typos and other errors, it offers faster performance and the IntelliSense works better, generating a better developer experience.
+I've used TypeScript because you can save time by avoiding bugs due to typos and other errors, it offers faster performance and the IntelliSense works better, generating a superior developer experience.
+
+And for some components I've chose the Radix UI because its optimization related to accessibility.
 
 ### Features
 

@@ -4,6 +4,7 @@ import { CiExport, CiImport, CiCoins1 } from 'react-icons/ci';
 
 import { Entry } from '@/app/components/Entry';
 import { BarChart } from '@/app/components/BarChart';
+import { NewEntryDialog } from '../components/NewEntryDialog';
 
 const labels = ['Jan', 'Fev', 'Mar'];
 const datasetOne = [3500, 4000, 3200];
@@ -17,9 +18,7 @@ const Home = () => {
         <section className="flex flex-col gap-5">
           <h2 className="text-xl font-semibold text-gray-300/90">Summary</h2>
 
-          <button className="min-w-fit max-w-full self-end rounded-md bg-cyan-600 px-4 py-2 text-sm font-semibold uppercase hover:bg-cyan-700">
-            New entry
-          </button>
+          <NewEntryDialog />
 
           <div className="mb-6 flex items-center justify-between gap-8">
             <div className="flex w-full flex-col gap-2 rounded-md border border-gray-800 px-6 py-4">
