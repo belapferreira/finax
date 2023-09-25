@@ -23,7 +23,7 @@ export const Header = () => {
 
   return (
     <header className="flex w-full items-center justify-center border border-l-0 border-r-0 border-t-0 border-solid border-gray-800 px-5">
-      <div className="flex h-full w-full max-w-app justify-between py-3">
+      <div className="flex h-full w-full max-w-app items-center justify-between py-3">
         <Image src="/finax-logo.svg" width={124} height={28} alt="Finax logo" />
 
         <nav className="flex h-full items-center gap-8">
