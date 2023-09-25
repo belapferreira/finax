@@ -63,7 +63,7 @@ export const NewEntryDialog = () => {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-gray-800/50 data-[state=open]:animate-overlayShow" />
+        <Dialog.Overlay className="fixed inset-0 bg-gray-500/50 data-[state=open]:animate-overlayShow" />
 
         <Dialog.Content className="fixed left-[50%] top-[50%] flex max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] flex-col gap-6 rounded-[6px] bg-gray-900 p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none data-[state=open]:animate-contentShow">
           <strong className="text-gray-300/90">New Entry</strong>
