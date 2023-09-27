@@ -1,10 +1,12 @@
 'use client';
 
-import { CiExport, CiImport, CiCoins1 } from 'react-icons/ci';
+import { CiExport, CiImport, CiCoins1, CiFileOn } from 'react-icons/ci';
 
 import { Entry } from '@/app/components/Entry';
 import { BarChart } from '@/app/components/BarChart';
 import { NewEntryDialog } from '../components/NewEntryDialog';
+
+import { useEntry } from '@/app/hooks/useEntries';
 
 const labels = ['Jan', 'Fev', 'Mar'];
 const datasetOne = [3500, 4000, 3200];
@@ -12,6 +14,8 @@ const datasetTwo = [3000, 2900, 3100];
 const datasetThree = [500, 1100, 100];
 
 const Home = () => {
+  const { entries } = useEntry();
+
   return (
     <main className="flex h-full w-full flex-col px-5 py-8">
       <div className="flex w-full max-w-app flex-col gap-10 self-center">
@@ -97,21 +101,29 @@ const Home = () => {
           <h2 className="text-xl font-semibold text-gray-300/90">
             Latest registers
           </h2>
-          <div className="flex flex-col gap-6">
-            <Entry
-              variant="income"
-              value={3000}
-              date="09/05/2023"
-              description="Client payment"
-            />
+          {!entries.length ? (
+            <div className="flex flex-col items-center justify-center gap-3 self-center py-10 text-gray-400">
+              <CiFileOn size={52} />
 
-            <Entry
-              variant="outcome"
-              value={700}
-              date="09/18/2023"
-              description="Groceries"
-            />
-          </div>
+              <p>{`You don't have any entry added yet`}</p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-6">
+              <Entry
+                variant="income"
+                value={3000}
+                date="09/05/2023"
+                description="Client payment"
+              />
+
+              <Entry
+                variant="outcome"
+                value={700}
+                date="09/18/2023"
+                description="Groceries"
+              />
+            </div>
+          )}
         </section>
       </div>
     </main>
