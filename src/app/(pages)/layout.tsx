@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 
+import { Provider } from '@/redux/provider';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -19,13 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex min-h-screen w-full flex-col bg-gray-900">
-          <Header />
+        <Provider>
+          <div className="flex min-h-screen w-full flex-col bg-gray-900">
+            <Header />
 
-          {children}
+            {children}
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </Provider>
       </body>
     </html>
   );

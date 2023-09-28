@@ -1,5 +1,6 @@
 'use client';
 
+import { useSelector } from 'react-redux';
 import { CiExport, CiImport, CiCoins1, CiFileOn } from 'react-icons/ci';
 
 import { Entry } from '@/app/components/Entry';
@@ -15,6 +16,10 @@ const datasetThree = [500, 1100, 100];
 
 const Home = () => {
   const { entries } = useEntry();
+
+  const store = useSelector((store) => store);
+
+  console.log('store', store);
 
   return (
     <main className="flex h-full w-full flex-col px-5 py-8">
