@@ -1,24 +1,12 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-import database from '@/database/db.json';
-
-const entrySlice = createSlice({
-  name: 'entry',
-  initialState: database,
-
-  reducers: {
-    addEntry: (state, action) => {},
-    deleteEntry: (state, action) => {},
-  },
-});
+import { entry } from './slices/entry';
 
 export const store = configureStore({
   reducer: {
-    entry: entrySlice.reducer,
+    entry: entry,
   },
 });
-
-export const { addEntry, deleteEntry } = entrySlice.actions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

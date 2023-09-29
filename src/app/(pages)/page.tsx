@@ -1,13 +1,14 @@
 'use client';
 
-import { useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { CiExport, CiImport, CiCoins1, CiFileOn } from 'react-icons/ci';
 
 import { Entry } from '@/app/components/Entry';
 import { BarChart } from '@/app/components/BarChart';
 import { NewEntryDialog } from '../components/NewEntryDialog';
 
-import { useEntry } from '@/app/hooks/useEntries';
+import { start } from '@/redux/slices/entry';
+import { useEffect } from 'react';
 
 const labels = ['Jan', 'Fev', 'Mar'];
 const datasetOne = [3500, 4000, 3200];
@@ -15,11 +16,13 @@ const datasetTwo = [3000, 2900, 3100];
 const datasetThree = [500, 1100, 100];
 
 const Home = () => {
-  const { entries } = useEntry();
+  const dispatch = useAppDispatch();
 
-  const store = useSelector((store) => store);
+  const entries = useAppSelector((store) => store.entry);
 
-  console.log('store', store);
+  useEffect(() => {
+    dispatch(start());
+  }, [dispatch]);
 
   return (
     <main className="flex h-full w-full flex-col px-5 py-8">
