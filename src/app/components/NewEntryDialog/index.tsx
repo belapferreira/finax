@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CiMoneyBill } from 'react-icons/ci';
 
@@ -31,8 +31,32 @@ export const NewEntryDialog = () => {
   };
 
   const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputAmount = event.target.value;
-    setAmount(inputAmount);
+    let inputAmount = event.target.value;
+
+    // Remove non-numeric characters and leading zeros
+    inputAmount = inputAmount.replace(/[^0-9]/g, '').replace(/^0+/, '');
+
+    let formattedValue = '';
+    const decimalSeparator = '.';
+    const thousandSeparator = ',';
+
+    if (inputAmount.length === 0) {
+      formattedValue = '';
+    } else if (inputAmount.length === 1) {
+      formattedValue = '0' + decimalSeparator + '0' + inputAmount;
+    } else if (inputAmount.length === 2) {
+      formattedValue = '0' + decimalSeparator + inputAmount;
+    } else {
+      const decimalNumber = inputAmount.slice(-2);
+      const integerNumber = inputAmount.slice(0, -2);
+
+      formattedValue =
+        integerNumber.replace(/\B(?=(\d{3})+(?!\d))/g, thousandSeparator) +
+        decimalSeparator +
+        decimalNumber;
+    }
+
+    setAmount(formattedValue);
   };
 
   const handleTypeChange = (value: string) => {
@@ -71,12 +95,14 @@ export const NewEntryDialog = () => {
           <form className="flex w-full flex-col gap-4">
             <div className="flex gap-4">
               <Input
+                name="date"
                 value={date}
                 placeholder="MM/DD/YYYY"
                 onChange={handleDateChange}
                 className="w-fit"
               />
               <Input
+                name="amount"
                 icon={CiMoneyBill}
                 value={amount}
                 placeholder="Value"
@@ -85,9 +111,10 @@ export const NewEntryDialog = () => {
               />
             </div>
 
-            <Select value={type} onValueChange={handleTypeChange} />
+            <Select value={type} onValueChange={handleTypeChange} name="type" />
 
             <textarea
+              name="description"
               value={description}
               onChange={handleDescriptionChange}
               placeholder="Short description"
