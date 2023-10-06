@@ -13,7 +13,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         ref={forwardedRef}
         className={twMerge(
-          'w-fit min-w-fit rounded-md bg-cyan-600 px-4 py-2 text-sm font-semibold uppercase hover:bg-cyan-700',
+          'w-fit min-w-fit rounded-md bg-cyan-600 px-4 py-2 text-sm font-semibold uppercase enabled:hover:bg-cyan-700 disabled:cursor-not-allowed disabled:opacity-60',
           className,
         )}
       >

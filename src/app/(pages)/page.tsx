@@ -1,28 +1,61 @@
 'use client';
 
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import { useEffect } from 'react';
 import { CiExport, CiImport, CiCoins1, CiFileOn } from 'react-icons/ci';
 
+import { start } from '@/redux/slices/entry';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+
+import { formatAmount } from '@/app/utils/format-amount';
+
+import { Loader } from '@/app/components/Loader';
 import { Entry } from '@/app/components/Entry';
 import { BarChart } from '@/app/components/BarChart';
 import { NewEntryDialog } from '../components/NewEntryDialog';
-
-import { start } from '@/redux/slices/entry';
-import { useEffect } from 'react';
 
 const labels = ['Jan', 'Fev', 'Mar'];
 const datasetOne = [3500, 4000, 3200];
 const datasetTwo = [3000, 2900, 3100];
 const datasetThree = [500, 1100, 100];
 
+interface EntriesSummarizedReturn {
+  totalIncome: number;
+  totalOutcome: number;
+}
+
 const Home = () => {
   const dispatch = useAppDispatch();
 
-  const entries = useAppSelector((store) => store.entry);
+  const { entries } = useAppSelector((store) => store.entry);
+
+  const entriesSummarized = entries?.reduce<EntriesSummarizedReturn>(
+    (accumulator, currentEntry) => {
+      const isIncome = currentEntry?.variant === 'income';
+      const currentValue = currentEntry?.valueInCents || 0;
+
+      if (isIncome) {
+        accumulator.totalIncome += currentValue;
+      } else {
+        accumulator.totalOutcome += currentValue;
+      }
+
+      return accumulator;
+    },
+    { totalIncome: 0, totalOutcome: 0 },
+  );
+
+  const { totalIncome, totalOutcome } = entriesSummarized;
+  const balance = totalIncome - totalOutcome;
 
   useEffect(() => {
-    dispatch(start());
-  }, [dispatch]);
+    if (!entries?.length) {
+      dispatch(start());
+    }
+  }, [dispatch, entries?.length]);
+
+  if (!entries.length) {
+    return <Loader />;
+  }
 
   return (
     <main className="flex h-full w-full flex-col px-5 py-8">
@@ -39,7 +72,9 @@ const Home = () => {
                 <CiImport size={20} color="#06b6d4" />
               </div>
 
-              <span className="font-semibold text-gray-300">$ 11.000</span>
+              <span className="font-semibold text-gray-300">
+                {`$ ${formatAmount(totalIncome)}`}
+              </span>
             </div>
 
             <div className="flex w-full flex-col gap-2 rounded-md border border-gray-800 px-6 py-4">
@@ -48,7 +83,9 @@ const Home = () => {
                 <CiExport size={20} color="#f43f5e" />
               </div>
 
-              <span className="font-semibold text-gray-300">$ 8.000</span>
+              <span className="font-semibold text-gray-300">
+                {`$ ${formatAmount(totalOutcome)}`}
+              </span>
             </div>
 
             <div className="flex w-full flex-col gap-2 rounded-md border border-gray-800 px-6 py-4">
@@ -57,7 +94,9 @@ const Home = () => {
                 <CiCoins1 size={20} color="#9ca3af" />
               </div>
 
-              <span className="font-semibold text-gray-300">$ 3.000</span>
+              <span className="font-semibold text-gray-300">
+                {`$ ${formatAmount(balance)}`}
+              </span>
             </div>
           </div>
 

@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import database from '@/database/db.json';
+import { Entry } from '@/types';
+import { entries } from '@/database';
 
-interface Entry {
-  id: string | null;
-  value: number | null;
-  variant: 'income' | 'outcome' | null;
-  createdAt: string | null;
-  description: string | null;
+interface EntryState {
+  entries: Entry[];
+  isLoading: boolean;
 }
 
-const initialState: Entry[] = [];
+const initialState: EntryState = {
+  entries: [],
+  isLoading: false,
+};
 
 const entrySlice = createSlice({
   name: 'entry',
@@ -21,14 +22,15 @@ const entrySlice = createSlice({
       const storedEntries = localStorage.getItem('@finax:entries');
 
       if (!storedEntries) {
-        localStorage.setItem(
-          '@finax:entries',
-          JSON.stringify(database.entries),
-        );
+        localStorage.setItem('@finax:entries', JSON.stringify(entries));
+
+        state.entries.push(...entries);
       }
 
       if (storedEntries) {
-        state.push(JSON.parse(storedEntries));
+        const parsedEntries = JSON.parse(storedEntries);
+
+        state.entries.push(...parsedEntries);
       }
     },
     // add: (state, action) => { },

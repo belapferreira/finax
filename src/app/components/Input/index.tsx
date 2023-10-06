@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge';
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
   value: string;
   icon?: IconType;
+  name?: string;
 }
 
 export const Input = ({
@@ -13,6 +14,7 @@ export const Input = ({
   onChange,
   icon: Icon,
   className,
+  name,
   ...rest
 }: InputProps) => {
   return (
@@ -26,6 +28,7 @@ export const Input = ({
 
       <input
         {...rest}
+        name={name}
         value={value}
         placeholder={placeholder}
         onChange={onChange}

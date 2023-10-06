@@ -12,6 +12,8 @@ export const NewEntryDialog = () => {
   const [type, setType] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState('');
 
+  const shouldEnabledAddEntry = !!date && !!amount && !!type && !!description;
+
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputDate = event.target.value;
     const inputOnlyNumbers = inputDate.replace(/\D/g, '');
@@ -127,6 +129,7 @@ export const NewEntryDialog = () => {
               cta="Add entry"
               onClick={handleSubmit}
               className="self-end"
+              disabled={!shouldEnabledAddEntry}
             />
           </Dialog.Close>
         </Dialog.Content>
