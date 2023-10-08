@@ -14,8 +14,10 @@ const Entries = () => {
   const { entries } = useAppSelector((store) => store.entry);
 
   useEffect(() => {
-    dispatch(start());
-  }, [dispatch]);
+    if (!entries?.length) {
+      dispatch(start());
+    }
+  }, [dispatch, entries?.length]);
 
   if (!entries.length) {
     return <Loader />;

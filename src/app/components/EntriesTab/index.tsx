@@ -3,11 +3,22 @@
 import { useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 
+import { formatAmount } from '@/app/utils/format-amount';
+import { useAppSelector } from '@/redux/hooks';
+
 import { TabItem } from './TabItem';
 import { Entry } from '../Entry';
 
 export const EntriesTabs = () => {
   const [currentTab, setCurrentTab] = useState<string>('all');
+
+  const { entries } = useAppSelector((store) => store.entry);
+
+  const incomeEntries = entries?.filter(({ variant }) => variant === 'income');
+
+  const outcomeEntries = entries?.filter(
+    ({ variant }) => variant === 'outcome',
+  );
 
   return (
     <Tabs.Root value={currentTab} onValueChange={setCurrentTab}>
@@ -33,28 +44,53 @@ export const EntriesTabs = () => {
 
       <Tabs.Content value="all">
         <div className="flex flex-col gap-6 py-8">
-          <Entry
-            variant="income"
-            value={3000}
-            date="09/05/2023"
-            description="Client payment"
-          />
-
-          <Entry
-            variant="outcome"
-            value={700}
-            date="09/18/2023"
-            description="Groceries"
-          />
+          {entries?.map(
+            ({ id, date, description, valueInCents, variant }, index) => (
+              <Entry
+                key={id}
+                index={index}
+                variant={variant}
+                value={formatAmount(valueInCents as number)}
+                date={date as string}
+                description={description}
+              />
+            ),
+          )}
         </div>
       </Tabs.Content>
 
       <Tabs.Content value="income">
-        <p>Income</p>
+        <div className="flex flex-col gap-6 py-8">
+          {incomeEntries?.map(
+            ({ id, date, description, valueInCents, variant }, index) => (
+              <Entry
+                key={id}
+                index={index}
+                variant={variant}
+                value={formatAmount(valueInCents as number)}
+                date={date as string}
+                description={description}
+              />
+            ),
+          )}
+        </div>
       </Tabs.Content>
 
       <Tabs.Content value="outcome">
-        <p>Outcome</p>
+        <div className="flex flex-col gap-6 py-8">
+          {outcomeEntries?.map(
+            ({ id, date, description, valueInCents, variant }, index) => (
+              <Entry
+                key={id}
+                index={index}
+                variant={variant}
+                value={formatAmount(valueInCents as number)}
+                date={date as string}
+                description={description}
+              />
+            ),
+          )}
+        </div>
       </Tabs.Content>
     </Tabs.Root>
   );

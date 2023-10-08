@@ -28,6 +28,8 @@ const Home = () => {
 
   const { entries } = useAppSelector((store) => store.entry);
 
+  const latestRegisters = entries?.slice(-6);
+
   const entriesSummarized = entries?.reduce<EntriesSummarizedReturn>(
     (accumulator, currentEntry) => {
       const isIncome = currentEntry?.variant === 'income';
@@ -156,19 +158,18 @@ const Home = () => {
             </div>
           ) : (
             <div className="flex flex-col gap-6">
-              <Entry
-                variant="income"
-                value={3000}
-                date="09/05/2023"
-                description="Client payment"
-              />
-
-              <Entry
-                variant="outcome"
-                value={700}
-                date="09/18/2023"
-                description="Groceries"
-              />
+              {latestRegisters?.map(
+                ({ id, date, description, valueInCents, variant }, index) => (
+                  <Entry
+                    key={id}
+                    index={index}
+                    variant={variant}
+                    value={formatAmount(valueInCents as number)}
+                    date={date as string}
+                    description={description}
+                  />
+                ),
+              )}
             </div>
           )}
         </section>
