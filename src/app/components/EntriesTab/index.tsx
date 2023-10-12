@@ -4,6 +4,7 @@ import { useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 
 import { formatAmount } from '@/app/utils/format-amount';
+import { sortEntries } from '@/app/utils/sort-entries';
 import { useAppSelector } from '@/redux/hooks';
 
 import { TabItem } from './TabItem';
@@ -14,10 +15,14 @@ export const EntriesTabs = () => {
 
   const { entries } = useAppSelector((store) => store.entry);
 
-  const incomeEntries = entries?.filter(({ variant }) => variant === 'income');
+  const allEntriesSorted = sortEntries(entries.slice());
 
-  const outcomeEntries = entries?.filter(
-    ({ variant }) => variant === 'outcome',
+  const incomeEntries = sortEntries(
+    entries?.filter(({ variant }) => variant === 'income'),
+  );
+
+  const outcomeEntries = sortEntries(
+    entries?.filter(({ variant }) => variant === 'outcome'),
   );
 
   return (
@@ -44,7 +49,7 @@ export const EntriesTabs = () => {
 
       <Tabs.Content value="all">
         <div className="flex flex-col gap-6 py-8">
-          {entries?.map(
+          {allEntriesSorted?.map(
             ({ id, date, description, valueInCents, variant }, index) => (
               <Entry
                 key={id}

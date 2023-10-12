@@ -7,6 +7,7 @@ import { start } from '@/redux/slices/entry';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
 import { formatAmount } from '@/app/utils/format-amount';
+import { sortEntries } from '@/app/utils/sort-entries';
 
 import { Loader } from '@/app/components/Loader';
 import { Entry } from '@/app/components/Entry';
@@ -28,7 +29,7 @@ const Home = () => {
 
   const { entries } = useAppSelector((store) => store.entry);
 
-  const latestRegisters = entries?.slice(-6);
+  const latestRegisters = sortEntries(entries?.slice(-6));
 
   const entriesSummarized = entries?.reduce<EntriesSummarizedReturn>(
     (accumulator, currentEntry) => {
