@@ -3,14 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Entry } from '@/types';
 import { entries } from '@/database';
 
-interface EntryState {
+export interface EntryState {
   entries: Entry[];
-  isLoading: boolean;
 }
 
 const initialState: EntryState = {
   entries: [],
-  isLoading: false,
 };
 
 const entrySlice = createSlice({
@@ -33,10 +31,12 @@ const entrySlice = createSlice({
         state.entries.push(...parsedEntries);
       }
     },
-    // add: (state, action) => { },
+    add: (state, action) => {
+      state.entries.push(action.payload);
+    },
     // remove: (state, action) => { },
   },
 });
 
 export const entry = entrySlice.reducer;
-export const { start /* add, remove */ } = entrySlice.actions;
+export const { start, add /* , remove */ } = entrySlice.actions;

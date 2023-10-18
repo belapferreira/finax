@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 
+import { RootState } from '@/redux/store';
 import { start } from '@/redux/slices/entry';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
@@ -11,7 +12,7 @@ import { EntriesTabs } from '@/app/components/EntriesTab';
 const Entries = () => {
   const dispatch = useAppDispatch();
 
-  const { entries } = useAppSelector((store) => store.entry);
+  const { entries } = useAppSelector((store: RootState) => store?.entry);
 
   useEffect(() => {
     if (!entries?.length) {
@@ -19,7 +20,7 @@ const Entries = () => {
     }
   }, [dispatch, entries?.length]);
 
-  if (!entries.length) {
+  if (!entries?.length) {
     return <Loader />;
   }
 

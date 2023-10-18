@@ -1,6 +1,10 @@
 import { ChangeEvent, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CiMoneyBill } from 'react-icons/ci';
+import { v4 as uuidv4 } from 'uuid';
+
+import { add } from '@/redux/slices/entry';
+import { useAppDispatch } from '@/redux/hooks';
 
 import { Button } from '@/app/components/Button';
 import { Select } from '@/app/components/Select';
@@ -11,6 +15,8 @@ export const NewEntryDialog = () => {
   const [amount, setAmount] = useState('');
   const [type, setType] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const shouldEnabledAddEntry = !!date && !!amount && !!type && !!description;
 
@@ -71,15 +77,23 @@ export const NewEntryDialog = () => {
   };
 
   const handleSubmit = () => {
+    const createdAt = new Date();
+
+    dispatch(
+      add({
+        id: uuidv4(),
+        date,
+        valueInCents: Number(amount.replace(/\D/g, '')),
+        variant: type,
+        description,
+        createdAt,
+      }),
+    );
+
     setDate('');
     setAmount('');
     setType(undefined);
     setDescription('');
-
-    console.log('date', date);
-    console.log('amount', amount);
-    console.log('type', type);
-    console.log('description', description);
   };
 
   return (

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { CiExport, CiImport, CiCoins1, CiFileOn } from 'react-icons/ci';
 
+import { RootState } from '@/redux/store';
 import { start } from '@/redux/slices/entry';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 
@@ -27,11 +28,11 @@ interface EntriesSummarizedReturn {
 const Home = () => {
   const dispatch = useAppDispatch();
 
-  const { entries } = useAppSelector((store) => store.entry);
+  const { entries } = useAppSelector((store: RootState) => store?.entry);
 
   const latestRegisters = sortEntries(entries?.slice(-6));
 
-  const entriesSummarized = entries?.reduce<EntriesSummarizedReturn>(
+  const entriesSummarized: EntriesSummarizedReturn = entries?.reduce(
     (accumulator, currentEntry) => {
       const isIncome = currentEntry?.variant === 'income';
       const currentValue = currentEntry?.valueInCents || 0;
@@ -55,6 +56,12 @@ const Home = () => {
       dispatch(start());
     }
   }, [dispatch, entries?.length]);
+
+  useEffect(() => {
+    if (entries?.length) {
+      localStorage.setItem('@finax:entries', JSON.stringify(entries));
+    }
+  }, [entries]);
 
   if (!entries.length) {
     return <Loader />;
