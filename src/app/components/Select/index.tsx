@@ -1,16 +1,41 @@
 import * as SelectRadix from '@radix-ui/react-select';
 import { VscChevronDown, VscChevronUp } from 'react-icons/vsc';
+import { tv } from 'tailwind-variants';
 
 import { SelectItem } from './SelectItem';
 import { ComponentProps } from 'react';
 
-type SelectProps = ComponentProps<typeof SelectRadix.Root>;
+const selectTrigger = tv({
+  base: 'flex items-center justify-between gap-2 rounded-md border border-gray-800 px-4 py-2 shadow-sm outline-none focus:border-cyan-600 data-[placeholder]:text-gray-400',
+  variants: {
+    variant: {
+      full: 'w-full',
+      fit: 'w-fit',
+    },
+  },
+  defaultVariants: {
+    variant: 'full',
+  },
+});
 
-export const Select = ({ value, onValueChange, ...rest }: SelectProps) => {
+type SelectType = ComponentProps<typeof SelectRadix.Root>;
+
+interface SelectProps extends SelectType {
+  items: { value: string; label: string }[];
+  variant?: 'full' | 'fit';
+}
+
+export const Select = ({
+  value,
+  items,
+  variant,
+  onValueChange,
+  ...rest
+}: SelectProps) => {
   return (
     <SelectRadix.Root value={value} onValueChange={onValueChange} {...rest}>
-      <SelectRadix.Trigger className="flex w-full items-center justify-between gap-2 rounded-md border border-gray-800 px-4 py-2 shadow-sm outline-none focus:border-cyan-600 data-[placeholder]:text-gray-400">
-        <SelectRadix.Value placeholder="Select a type" />
+      <SelectRadix.Trigger className={selectTrigger({ variant })}>
+        <SelectRadix.Value placeholder="Select" />
 
         <SelectRadix.Icon>
           <VscChevronDown className="h-5 w-5 text-gray-400" />
@@ -30,8 +55,11 @@ export const Select = ({ value, onValueChange, ...rest }: SelectProps) => {
 
           <SelectRadix.Viewport asChild>
             <SelectRadix.Group>
-              <SelectItem value="income">Income</SelectItem>
-              <SelectItem value="outcome">Outcome</SelectItem>
+              {items?.map(({ value, label }) => (
+                <SelectItem key={value} value={value}>
+                  {label}
+                </SelectItem>
+              ))}
             </SelectRadix.Group>
           </SelectRadix.Viewport>
         </SelectRadix.Content>

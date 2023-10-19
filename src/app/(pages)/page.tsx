@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CiExport, CiImport, CiCoins1, CiFileOn } from 'react-icons/ci';
 
 import { RootState } from '@/redux/store';
@@ -13,7 +13,8 @@ import { sortEntries } from '@/app/utils/sort-entries';
 import { Loader } from '@/app/components/Loader';
 import { Entry } from '@/app/components/Entry';
 import { BarChart } from '@/app/components/BarChart';
-import { NewEntryDialog } from '../components/NewEntryDialog';
+import { NewEntryDialog } from '@/app/components/NewEntryDialog';
+import { Select } from '@/app/components/Select';
 
 const labels = ['Jan', 'Fev', 'Mar'];
 const datasetOne = [3500, 4000, 3200];
@@ -25,7 +26,16 @@ interface EntriesSummarizedReturn {
   totalOutcome: number;
 }
 
+interface YearItems {
+  value: string;
+  label: string;
+}
+
 const Home = () => {
+  const [yearSelected, setYearSelected] = useState<string | undefined>(
+    new Date().getFullYear().toString(),
+  );
+
   const dispatch = useAppDispatch();
 
   const { entries } = useAppSelector((store: RootState) => store?.entry);
@@ -50,6 +60,27 @@ const Home = () => {
 
   const { totalIncome, totalOutcome } = entriesSummarized;
   const balance = totalIncome - totalOutcome;
+
+  const yearItems = entries?.reduce<YearItems[]>(
+    (accumulator, currentEntry) => {
+      const year = new Date(currentEntry?.date as string)
+        .getFullYear()
+        .toString();
+
+      const yearExists = accumulator?.find(({ value }) => value === year);
+
+      if (!yearExists) {
+        accumulator?.push({ value: year, label: year });
+      }
+
+      return accumulator;
+    },
+    [],
+  );
+
+  const handleYearSelection = (value: string) => {
+    setYearSelected(value);
+  };
 
   useEffect(() => {
     if (!entries?.length) {
@@ -110,47 +141,57 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="h-64">
-            <BarChart
-              data={{
-                labels: labels,
-                datasets: [
-                  {
-                    data: datasetOne,
-                    maxBarThickness: 52,
-                    backgroundColor: '#083344',
-                    borderColor: '#0891b2',
-                    hoverBackgroundColor: '#083344',
-                    hoverBorderColor: '#0891b2',
-                    borderRadius: 4,
-                    borderWidth: 1,
-                    label: ` Income ($)`,
-                  },
-                  {
-                    data: datasetTwo,
-                    maxBarThickness: 52,
-                    backgroundColor: '#4c0519',
-                    borderColor: '#e11d48',
-                    hoverBackgroundColor: '#4c0519',
-                    hoverBorderColor: '#e11d48',
-                    borderRadius: 4,
-                    borderWidth: 1,
-                    label: ` Outcome ($)`,
-                  },
-                  {
-                    data: datasetThree,
-                    maxBarThickness: 52,
-                    backgroundColor: '#1f2937',
-                    borderColor: '#9ca3af',
-                    hoverBackgroundColor: '#1f2937',
-                    hoverBorderColor: '#9ca3af',
-                    borderRadius: 4,
-                    borderWidth: 1,
-                    label: ` Balance ($)`,
-                  },
-                ],
-              }}
+          <div className="flex flex-col items-end gap-5">
+            <Select
+              name="chart"
+              variant="fit"
+              items={yearItems}
+              value={yearSelected}
+              onValueChange={handleYearSelection}
             />
+
+            <div className="h-64 w-full">
+              <BarChart
+                data={{
+                  labels: labels,
+                  datasets: [
+                    {
+                      data: datasetOne,
+                      maxBarThickness: 52,
+                      backgroundColor: '#083344',
+                      borderColor: '#0891b2',
+                      hoverBackgroundColor: '#083344',
+                      hoverBorderColor: '#0891b2',
+                      borderRadius: 4,
+                      borderWidth: 1,
+                      label: ` Income ($)`,
+                    },
+                    {
+                      data: datasetTwo,
+                      maxBarThickness: 52,
+                      backgroundColor: '#4c0519',
+                      borderColor: '#e11d48',
+                      hoverBackgroundColor: '#4c0519',
+                      hoverBorderColor: '#e11d48',
+                      borderRadius: 4,
+                      borderWidth: 1,
+                      label: ` Outcome ($)`,
+                    },
+                    {
+                      data: datasetThree,
+                      maxBarThickness: 52,
+                      backgroundColor: '#1f2937',
+                      borderColor: '#9ca3af',
+                      hoverBackgroundColor: '#1f2937',
+                      hoverBorderColor: '#9ca3af',
+                      borderRadius: 4,
+                      borderWidth: 1,
+                      label: ` Balance ($)`,
+                    },
+                  ],
+                }}
+              />
+            </div>
           </div>
         </section>
 

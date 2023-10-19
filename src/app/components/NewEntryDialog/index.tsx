@@ -10,6 +10,11 @@ import { Button } from '@/app/components/Button';
 import { Select } from '@/app/components/Select';
 import { Input } from '@/app/components/Input';
 
+const items = [
+  { value: 'income', label: 'Income' },
+  { value: 'outcome', label: 'Outcome' },
+];
+
 export const NewEntryDialog = () => {
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
@@ -127,7 +132,12 @@ export const NewEntryDialog = () => {
               />
             </div>
 
-            <Select value={type} onValueChange={handleTypeChange} name="type" />
+            <Select
+              name="type"
+              value={type}
+              items={items}
+              onValueChange={handleTypeChange}
+            />
 
             <textarea
               name="description"
