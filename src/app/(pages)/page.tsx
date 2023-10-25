@@ -15,11 +15,7 @@ import { Entry } from '@/app/components/Entry';
 import { BarChart } from '@/app/components/BarChart';
 import { NewEntryDialog } from '@/app/components/NewEntryDialog';
 import { Select } from '@/app/components/Select';
-
-const labels = ['Jan', 'Fev', 'Mar'];
-const datasetOne = [3500, 4000, 3200];
-const datasetTwo = [3000, 2900, 3100];
-const datasetThree = [500, 1100, 100];
+import { format } from 'date-fns';
 
 interface EntriesSummarizedReturn {
   totalIncome: number;
@@ -29,6 +25,12 @@ interface EntriesSummarizedReturn {
 interface YearItems {
   value: string;
   label: string;
+}
+
+interface ChartData {
+  labels: string[];
+  income: { value: number; month: string }[];
+  outcome: { value: number; month: string }[];
 }
 
 const Home = () => {
@@ -77,6 +79,71 @@ const Home = () => {
     },
     [],
   );
+
+  const entriesFiltered = entries?.filter(({ date }) => {
+    const year = new Date(date as string).getFullYear().toString();
+
+    return year === yearSelected;
+  });
+
+  const chartData = entriesFiltered.reduce<ChartData>(
+    (accumulator, currentEntry) => {
+      const month = format(new Date(currentEntry.date as string), 'MMM');
+      const isIncome = currentEntry?.variant === 'income';
+      const currentValue = currentEntry?.valueInCents || 0;
+
+      const monthExists = accumulator?.labels?.find(
+        (monthAcc) => monthAcc === month,
+      );
+
+      if (!monthExists) {
+        accumulator?.labels?.push(month);
+      }
+
+      if (isIncome) {
+        accumulator?.income?.push({ value: currentValue, month });
+      } else {
+        accumulator?.outcome?.push({ value: currentValue, month });
+      }
+
+      return accumulator;
+    },
+    { labels: [], income: [], outcome: [] },
+  );
+
+  const datasetOne = chartData.income.reduce(
+    (accumulator, currentIncome) => {
+      const labelIndex = chartData?.labels.indexOf(currentIncome?.month);
+      const value = currentIncome?.value / 100;
+
+      !!accumulator[labelIndex]
+        ? (accumulator[labelIndex] += value)
+        : (accumulator[labelIndex] = value);
+
+      return accumulator;
+    },
+    [0],
+  );
+
+  const datasetTwo = chartData.outcome.reduce(
+    (accumulator, currentOutcome) => {
+      const labelIndex = chartData?.labels.indexOf(currentOutcome?.month);
+      const value = currentOutcome?.value / 100;
+
+      !!accumulator[labelIndex]
+        ? (accumulator[labelIndex] += value)
+        : (accumulator[labelIndex] = value);
+
+      return accumulator;
+    },
+    [0],
+  );
+
+  const datasetThree = datasetOne?.map((value, index) => {
+    const balance = value - datasetTwo[index];
+
+    return balance;
+  });
 
   const handleYearSelection = (value: string) => {
     setYearSelected(value);
@@ -153,7 +220,7 @@ const Home = () => {
             <div className="h-64 w-full">
               <BarChart
                 data={{
-                  labels: labels,
+                  labels: chartData?.labels,
                   datasets: [
                     {
                       data: datasetOne,
