@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ['ui-avatars.com'],
   },
 
-  basePath: '/github-pages',
+  basePath: '/finax',
 };
 
 module.exports = nextConfig;
