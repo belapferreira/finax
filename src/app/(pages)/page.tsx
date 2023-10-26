@@ -111,7 +111,7 @@ const Home = () => {
     { labels: [], income: [], outcome: [] },
   );
 
-  const datasetOne = chartData.income.reduce(
+  const incomes = chartData.income.reduce(
     (accumulator, currentIncome) => {
       const labelIndex = chartData?.labels.indexOf(currentIncome?.month);
       const value = currentIncome?.value / 100;
@@ -125,7 +125,7 @@ const Home = () => {
     [0],
   );
 
-  const datasetTwo = chartData.outcome.reduce(
+  const outcomes = chartData.outcome.reduce(
     (accumulator, currentOutcome) => {
       const labelIndex = chartData?.labels.indexOf(currentOutcome?.month);
       const value = currentOutcome?.value / 100;
@@ -139,8 +139,8 @@ const Home = () => {
     [0],
   );
 
-  const datasetThree = datasetOne?.map((value, index) => {
-    const balance = value - datasetTwo[index];
+  const result = incomes?.map((value, index) => {
+    const balance = value - (outcomes[index] || 0);
 
     return balance;
   });
@@ -180,14 +180,14 @@ const Home = () => {
                 <CiImport size={20} color="#06b6d4" />
               </div>
 
-              <span className="font-semibold text-gray-300">
+              <span className="font-semibold text-gray-300/80">
                 {`$ ${formatAmount(totalIncome)}`}
               </span>
             </div>
 
             <div className="flex w-full flex-col gap-2 rounded-md border border-gray-800 px-6 py-4">
               <div className="flex items-center justify-between">
-                <p className="text-gray-400">Outcomes</p>
+                <p className="text-gray-400/80">Outcomes</p>
                 <CiExport size={20} color="#f43f5e" />
               </div>
 
@@ -202,7 +202,7 @@ const Home = () => {
                 <CiCoins1 size={20} color="#9ca3af" />
               </div>
 
-              <span className="font-semibold text-gray-300">
+              <span className="font-semibold text-gray-300/80">
                 {`$ ${formatAmount(balance)}`}
               </span>
             </div>
@@ -223,7 +223,7 @@ const Home = () => {
                   labels: chartData?.labels,
                   datasets: [
                     {
-                      data: datasetOne,
+                      data: incomes,
                       maxBarThickness: 52,
                       backgroundColor: '#083344',
                       borderColor: '#0891b2',
@@ -234,7 +234,7 @@ const Home = () => {
                       label: ` Income ($)`,
                     },
                     {
-                      data: datasetTwo,
+                      data: outcomes,
                       maxBarThickness: 52,
                       backgroundColor: '#4c0519',
                       borderColor: '#e11d48',
@@ -245,7 +245,7 @@ const Home = () => {
                       label: ` Outcome ($)`,
                     },
                     {
-                      data: datasetThree,
+                      data: result,
                       maxBarThickness: 52,
                       backgroundColor: '#1f2937',
                       borderColor: '#9ca3af',

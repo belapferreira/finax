@@ -5,8 +5,8 @@ const entry = tv({
   base: 'flex gap-10 w-[90%] self-center justify-between px-6 py-4 border border-solid rounded-md',
   variants: {
     variant: {
-      income: 'border-cyan-800/50',
-      outcome: 'border-rose-800/50',
+      income: 'border-cyan-800/40',
+      outcome: 'border-rose-800/40',
     },
   },
 });
@@ -39,15 +39,17 @@ export const Entry = ({
 
       <div className={entry({ variant })}>
         <div className="flex w-28 flex-col gap-1">
-          <span className="text-gray-300">{date}</span>
+          <span className="text-gray-300/80">{date}</span>
         </div>
 
         <div className="flex flex-1 flex-col gap-1">
-          {description && <span className="text-gray-300">{description}</span>}
+          {description && (
+            <span className="text-gray-300/80">{description}</span>
+          )}
         </div>
 
         <div className="flex flex-1 flex-col gap-1">
-          <span className="text-gray-300">{`$ ${value}`}</span>
+          <span className="text-gray-300/80">{`$ ${value}`}</span>
         </div>
 
         {isIncome ? (
