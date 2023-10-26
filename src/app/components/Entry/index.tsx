@@ -2,7 +2,7 @@ import { tv, VariantProps } from 'tailwind-variants';
 import { CiExport, CiImport } from 'react-icons/ci';
 
 const entry = tv({
-  base: 'flex gap-10 w-[90%] self-center justify-between px-6 py-4 border border-solid rounded-md',
+  base: 'flex gap-10 w-full md:w-[90%] self-center justify-between px-6 py-4 border border-solid rounded-md',
   variants: {
     variant: {
       income: 'border-cyan-800/40',
@@ -28,36 +28,22 @@ export const Entry = ({
   const isIncome = variant === 'income';
 
   return (
-    <>
-      {index === 0 && (
-        <div className="flex w-[90%] justify-between gap-10 self-center px-6 text-sm text-gray-400">
-          <span className="w-28">Date</span>
-          <span className="flex-1">Description</span>
-          <span className="-ml-10 flex-1 self-start">Value</span>
-        </div>
-      )}
+    <div className={entry({ variant })}>
+      <div className="flex w-full flex-col gap-3 md:flex-row md:gap-10">
+        <span className="text-gray-300/60">{date}</span>
+        <span className="flex flex-1 font-medium text-gray-300/70">
+          {description}
+        </span>
+        <span className="font-semibold text-gray-300/80">{`$ ${value}`}</span>
+      </div>
 
-      <div className={entry({ variant })}>
-        <div className="flex w-28 flex-col gap-1">
-          <span className="text-gray-300/80">{date}</span>
-        </div>
-
-        <div className="flex flex-1 flex-col gap-1">
-          {description && (
-            <span className="text-gray-300/80">{description}</span>
-          )}
-        </div>
-
-        <div className="flex flex-1 flex-col gap-1">
-          <span className="text-gray-300/80">{`$ ${value}`}</span>
-        </div>
-
+      <div>
         {isIncome ? (
           <CiImport size={20} color="#06b6d4" />
         ) : (
           <CiExport size={20} color="#f43f5e" />
         )}
       </div>
-    </>
+    </div>
   );
 };

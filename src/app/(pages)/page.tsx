@@ -173,7 +173,7 @@ const Home = () => {
 
           <NewEntryDialog />
 
-          <div className="mb-6 flex items-center justify-between gap-8">
+          <div className="mb-6 flex flex-col items-center justify-between gap-4 md:flex-row md:gap-8">
             <div className="flex w-full flex-col gap-2 rounded-md border border-gray-800 px-6 py-4">
               <div className="flex items-center justify-between">
                 <p className="text-gray-400">Incomes</p>
