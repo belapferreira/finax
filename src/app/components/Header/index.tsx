@@ -36,7 +36,7 @@ export const Header = () => {
     (event: MouseEvent) => {
       const target = event?.target as HTMLElement;
 
-      if (!navRef.current?.contains(target)) {
+      if (!navRef.current?.isEqualNode(target)) {
         setIsVisible(false);
       }
     },
@@ -84,7 +84,6 @@ export const Header = () => {
           <span className="absolute -top-[0.375rem] left-4 inline-block h-3.5 w-3.5 origin-center rotate-45 rounded-sm bg-gray-800 md:hidden" />
           <Link
             href="/"
-            onClick={handleOpenMenu}
             className={navItem({
               variant: currentRoute === '/' ? 'active' : undefined,
             })}
@@ -94,7 +93,6 @@ export const Header = () => {
 
           <Link
             href="/entries"
-            onClick={handleOpenMenu}
             className={navItem({
               variant: currentRoute.startsWith('/entries')
                 ? 'active'
