@@ -6,7 +6,7 @@ const entry = tv({
   variants: {
     variant: {
       income: 'border-cyan-800/40',
-      outcome: 'border-rose-800/40',
+      outcome: 'border-rose-900/50',
     },
   },
 });
