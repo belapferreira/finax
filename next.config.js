@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['ui-avatars.com'],
     unoptimized: true,
+    dangerouslyAllowSVG: true,
   },
 };
 
