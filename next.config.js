@@ -3,9 +3,8 @@ const nextConfig = {
   output: 'export',
   images: {
     domains: ['ui-avatars.com'],
+    unoptimized: true,
   },
-
-  basePath: '/finax',
 };
 
 module.exports = nextConfig;
