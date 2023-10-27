@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { tv } from 'tailwind-variants';
 import { twMerge } from 'tailwind-merge';
-import { IoMenu, IoClose, IoFlashSharp } from 'react-icons/io5';
+import { IoMenu, IoClose } from 'react-icons/io5';
 
 const navItem = tv({
   base: 'text-gray-400 tracking-wider',
@@ -57,7 +57,7 @@ export const Header = () => {
         <div className="flex items-center gap-4">
           <Link href="/">
             <Image
-              src="/finax-logo.svg"
+              src="finax-logo.svg"
               width={124}
               height={28}
               alt="Finax logo"
