@@ -5,8 +5,8 @@ const entry = tv({
   base: 'flex gap-10 w-full md:w-[90%] self-center justify-between px-6 py-4 border border-solid rounded-md',
   variants: {
     variant: {
-      income: 'border-cyan-800/40',
-      outcome: 'border-rose-900/50',
+      income: 'border-cyan-500/20',
+      outcome: 'border-rose-500/20',
     },
   },
 });
