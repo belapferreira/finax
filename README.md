@@ -21,7 +21,7 @@
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/belapferreira/finax?style=social">
 </p>
 
-<!-- <p align="center">
+<p align="center">
   👉🏻 Access:
   <a
     href="https://belapferreira.github.io/finax/"
@@ -30,7 +30,7 @@
   >
     https://belapferreira.github.io/finax/
   </a>
-</p> -->
+</p>
 
 <p align="center">
   <a href="#features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -43,7 +43,7 @@
 
 ### Context
 
-The Finax app was developed as a way to apply and fix the knowledge that was studied about TailwindCSS and Redux Toolkit practically.
+The Finax app was developed as a way to apply and fix the knowledge that I studied about TailwindCSS and Redux Toolkit practically.
 
 I'm more familiar with React, so I've picked this library to develop the interface, using the Next.js framework. Currently, the React team recommends choosing one of the frameworks popular in the community:
 
@@ -55,15 +55,10 @@ And for some components I've chose the Radix UI because its optimization related
 
 ### Features
 
-<p align="center">
-  🚧 In construction 🚧
-</p>
-
-<!-- - Add task;
-- Remove task;
-- Mark a task as finished and unmark it;
-- Save tasks registered in the local storage;
-- Responsive page. -->
+- Add a entry;
+- [in progress] Remove a entry;
+- Save entries registered in the local storage;
+- Responsive page.
 
 ### :heavy_check_mark: Settings
 
@@ -98,7 +93,7 @@ yarn dev
 
 This project was developed using the following resources:
 
-[Eslint](https://eslint.org/) | [Next.js](https://nextjs.org/) | [Radix UI Tabs](https://www.radix-ui.com/primitives/docs/components/tabs) | [React Icons](https://react-icons.github.io/react-icons/) | [Redux Toolkit](https://redux-toolkit.js.org/) | [Tailwindcss](https://tailwindcss.com/) | [TypeScript](https://www.typescriptlang.org/)
+[Eslint](https://eslint.org/) | [Next.js](https://nextjs.org/) | [Prettier](https://prettier.io/) | [Radix UI Tabs](https://www.radix-ui.com/primitives/docs/components/tabs) | [React Chart 2](https://react-chartjs-2.js.org/) | [React Icons](https://react-icons.github.io/react-icons/) | [Redux Toolkit](https://redux-toolkit.js.org/) | [Tailwindcss](https://tailwindcss.com/) | [TypeScript](https://www.typescriptlang.org/) | [Uuid](https://github.com/uuidjs/uuid)
 
 
 ### :memo: License
