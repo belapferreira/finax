@@ -34,9 +34,19 @@ const entrySlice = createSlice({
     add: (state, action) => {
       state.entries.push(action.payload);
     },
-    // remove: (state, action) => { },
+    remove: (state, action) => {
+      const id = action.payload;
+
+      const filteredEntries = state?.entries?.filter(
+        (entry) => entry.id !== id,
+      );
+
+      state.entries = filteredEntries;
+
+      alert('Entry successfully removed!');
+    },
   },
 });
 
 export const entry = entrySlice.reducer;
-export const { start, add /* , remove */ } = entrySlice.actions;
+export const { start, add, remove } = entrySlice.actions;

@@ -15,15 +15,15 @@ export const EntriesTabs = () => {
 
   const { entries } = useAppSelector((store) => store.entry);
 
-  const allEntriesSorted = sortEntries(entries.slice());
+  const allEntriesSorted = sortEntries({ entries: entries.slice() });
 
-  const incomeEntries = sortEntries(
-    entries?.filter(({ variant }) => variant === 'income'),
-  );
+  const incomeEntries = sortEntries({
+    entries: entries?.filter(({ variant }) => variant === 'income'),
+  });
 
-  const outcomeEntries = sortEntries(
-    entries?.filter(({ variant }) => variant === 'outcome'),
-  );
+  const outcomeEntries = sortEntries({
+    entries: entries?.filter(({ variant }) => variant === 'outcome'),
+  });
 
   return (
     <Tabs.Root value={currentTab} onValueChange={setCurrentTab}>
@@ -53,7 +53,7 @@ export const EntriesTabs = () => {
             ({ id, date, description, valueInCents, variant }, index) => (
               <Entry
                 key={id}
-                index={index}
+                id={id as string}
                 variant={variant}
                 value={formatAmount(valueInCents as number)}
                 date={date as string}
@@ -70,7 +70,7 @@ export const EntriesTabs = () => {
             ({ id, date, description, valueInCents, variant }, index) => (
               <Entry
                 key={id}
-                index={index}
+                id={id as string}
                 variant={variant}
                 value={formatAmount(valueInCents as number)}
                 date={date as string}
@@ -87,7 +87,7 @@ export const EntriesTabs = () => {
             ({ id, date, description, valueInCents, variant }, index) => (
               <Entry
                 key={id}
-                index={index}
+                id={id as string}
                 variant={variant}
                 value={formatAmount(valueInCents as number)}
                 date={date as string}

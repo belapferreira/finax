@@ -281,7 +281,7 @@ const Home = () => {
                 ({ id, date, description, valueInCents, variant }, index) => (
                   <Entry
                     key={id}
-                    index={index}
+                    id={id as string}
                     variant={variant}
                     value={formatAmount(valueInCents as number)}
                     date={date as string}

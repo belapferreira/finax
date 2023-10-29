@@ -56,7 +56,7 @@ And for some components I've chose the Radix UI because its optimization related
 ### Features
 
 - Add a entry;
-- [in progress] Remove a entry;
+- Remove a entry;
 - Save entries registered in the local storage;
 - Responsive page.
 

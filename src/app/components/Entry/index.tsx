@@ -1,5 +1,9 @@
+import { useCallback } from 'react';
 import { tv, VariantProps } from 'tailwind-variants';
-import { CiExport, CiImport } from 'react-icons/ci';
+import { CiExport, CiImport, CiTrash } from 'react-icons/ci';
+
+import { useAppDispatch } from '@/redux/hooks';
+import { remove } from '@/redux/slices/entry';
 
 const entry = tv({
   base: 'flex gap-10 w-full md:w-[90%] self-center justify-between px-6 py-4 border border-solid rounded-md',
@@ -12,24 +16,33 @@ const entry = tv({
 });
 
 interface EntryProps extends VariantProps<typeof entry> {
-  index: number;
+  id: string;
   date: string;
   value: string;
   description: string | null;
 }
 
 export const Entry = ({
-  index,
+  id,
   date,
   value,
   description,
   variant,
 }: EntryProps) => {
+  const dispatch = useAppDispatch();
+
   const isIncome = variant === 'income';
+
+  const handleRemoveEntry = useCallback(
+    (id: string) => {
+      dispatch(remove(id));
+    },
+    [dispatch],
+  );
 
   return (
     <div className={entry({ variant })}>
-      <div className="flex w-full flex-col gap-3 md:flex-row md:gap-10">
+      <div className="flex w-full flex-col items-center gap-3 md:flex-row md:gap-10">
         <span className="text-gray-300/60">{date}</span>
         <span className="flex flex-1 font-medium text-gray-300/70">
           {description}
@@ -37,13 +50,20 @@ export const Entry = ({
         <span className="font-semibold text-gray-300/80">{`$ ${value}`}</span>
       </div>
 
-      <div>
+      <div className="flex items-center">
         {isIncome ? (
           <CiImport size={20} color="#06b6d4" />
         ) : (
           <CiExport size={20} color="#f43f5e" />
         )}
       </div>
+
+      <button
+        onClick={() => handleRemoveEntry(id)}
+        className="rounded-sm p-3 text-gray-400 hover:bg-gray-800"
+      >
+        <CiTrash size={20} />
+      </button>
     </div>
   );
 };
