@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="public/finax-image.png" width="80%" height="80%" max-width="100%" style="border-radius:8px" />
+  <img src="public/finax-interface.gif" width="80%" height="80%" max-width="100%" style="border-radius:8px" />
 </p>
 
 <strong align="center">
