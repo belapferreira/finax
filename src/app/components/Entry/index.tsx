@@ -42,7 +42,7 @@ export const Entry = ({
 
   return (
     <div className={entry({ variant })}>
-      <div className="flex w-full flex-col items-center gap-3 md:flex-row md:gap-10">
+      <div className="flex w-full flex-col gap-3 md:flex-row md:items-center md:gap-10">
         <span className="text-gray-300/60">{date}</span>
         <span className="flex flex-1 font-medium text-gray-300/70">
           {description}
@@ -50,7 +50,7 @@ export const Entry = ({
         <span className="font-semibold text-gray-300/80">{`$ ${value}`}</span>
       </div>
 
-      <div className="flex items-center">
+      <div className="flex p-3 md:items-center md:p-0">
         {isIncome ? (
           <CiImport size={20} color="#06b6d4" />
         ) : (
@@ -60,7 +60,7 @@ export const Entry = ({
 
       <button
         onClick={() => handleRemoveEntry(id)}
-        className="rounded-sm p-3 text-gray-400 hover:bg-gray-800"
+        className="self-start rounded-sm p-3 text-gray-400 hover:bg-gray-800 md:self-center"
       >
         <CiTrash size={20} />
       </button>

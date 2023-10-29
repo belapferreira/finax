@@ -2,13 +2,19 @@
   <img src="public/finax-logo.svg"/>
 </p>
 
-<!-- <p align="center">
-  <img src="src/assets/tasker-image.png" width="50%" height="50%" max-width="100%" >
-</p> -->
+<p align="center">
+  <img src="public/finax-image.png" width="50%" height="50%" max-width="100%" style="border-radius:8px" />
+</p>
 
 <strong align="center">
   With a combination of the word "finance", which refers to the management of money, and the word "maximize", which means to make the most of something, the Finax is a personal finance control app that aims to help people maximize their finances and make the most of their money.
 </strong>
+
+\
+&nbsp;
+
+> [!NOTE]
+> 👉🏻 Access: [https://belapferreira.github.io/finax/](https://belapferreira.github.io/finax/)
 
 \
 &nbsp;
@@ -19,17 +25,6 @@
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26">
 
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/belapferreira/finax?style=social">
-</p>
-
-<p align="center">
-  👉🏻 Access:
-  <a
-    href="https://belapferreira.github.io/finax/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    https://belapferreira.github.io/finax/
-  </a>
 </p>
 
 <p align="center">
