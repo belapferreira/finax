@@ -42,7 +42,7 @@ const Home = () => {
 
   const { entries } = useAppSelector((store: RootState) => store?.entry);
 
-  const latestRegisters = sortEntries(entries?.slice(-6));
+  const latestRegisters = sortEntries({ entries: entries?.slice(-6) });
 
   const entriesSummarized: EntriesSummarizedReturn = entries?.reduce(
     (accumulator, currentEntry) => {
@@ -86,7 +86,10 @@ const Home = () => {
     return year === yearSelected;
   });
 
-  const chartData = entriesFiltered.reduce<ChartData>(
+  const chartData = sortEntries({
+    entries: entriesFiltered,
+    desc: false,
+  }).reduce<ChartData>(
     (accumulator, currentEntry) => {
       const month = format(new Date(currentEntry.date as string), 'MMM');
       const isIncome = currentEntry?.variant === 'income';
