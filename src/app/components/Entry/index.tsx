@@ -6,7 +6,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { remove } from '@/redux/slices/entry';
 
 const entry = tv({
-  base: 'flex gap-10 w-full md:w-[90%] self-center justify-between px-6 py-4 border border-solid rounded-md',
+  base: 'flex px-4 md:gap-10 w-full md:w-[90%] self-center justify-between md:px-6 py-4 border border-solid rounded-md',
   variants: {
     variant: {
       income: 'border-cyan-500/20',
