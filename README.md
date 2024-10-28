@@ -46,12 +46,12 @@ I'm more familiar with React, so I've picked this library to develop the interfa
 
 I've used TypeScript because you can save time by avoiding bugs due to typos and other errors, it offers faster performance and the IntelliSense works better, generating a superior developer experience.
 
-And for some components I've chose the Radix UI because its optimization related to accessibility.
+And for some components, I've chosen the Radix UI because its optimization related to accessibility.
 
 ### Features
 
-- Add a entry;
-- Remove a entry;
+- Add an entry;
+- Remove an entry;
 - Save entries registered in the local storage;
 - Responsive page.
 
