@@ -16,6 +16,7 @@ import { BarChart } from '@/app/components/BarChart';
 import { NewEntryDialog } from '@/app/components/NewEntryDialog';
 import { Select } from '@/app/components/Select';
 import { format } from 'date-fns';
+import { defaultYearItems } from '../constants';
 
 interface EntriesSummarizedReturn {
   totalIncome: number;
@@ -77,7 +78,7 @@ const Home = () => {
 
       return accumulator;
     },
-    [],
+    defaultYearItems,
   );
 
   const entriesFiltered = entries?.filter(({ date }) => {
